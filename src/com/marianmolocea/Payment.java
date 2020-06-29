@@ -9,7 +9,7 @@ public class Payment {
         double[] acceptedCoins = {0.05D, 0.10D, 0.20D, 0.50D, 1.00D};
         double amountPayed = 0D;
         double amountToBePayed = item.price * (int) quantity;
-        Float coinsFloat = new Float();
+        Bank change = new Bank();
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("\u001B[32mAccepted coins: £0.05, £0.10, £0.20, £0.50, £1 \u001B[0m");
@@ -27,7 +27,7 @@ public class Payment {
 
             if(DoubleStream.of(acceptedCoins).anyMatch(el -> el == coin)) {
                 amountPayed += coin;
-                coinsFloat.addCoins(coin);
+                change.addCoin(coin);
             }
             else System.out.println("\u001B[31mCoin not Accepted\u001B[0m");
         }
