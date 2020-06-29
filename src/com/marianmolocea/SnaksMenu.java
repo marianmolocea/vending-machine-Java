@@ -42,8 +42,7 @@ public class SnaksMenu {
             snacks[selectedItem - 1].decreaseQuantity(quantity);
         }
         else if (selectedItem == 10976) {
-            System.out.println("Power Menu");
-            bank.totalSales();
+            PowerMenu.displayMenu(bank);
         }
         else
             System.out.println("\u001B[31mYour selection is invalid!\u001B[0m");

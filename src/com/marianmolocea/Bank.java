@@ -10,6 +10,7 @@ public class Bank {
 
     public void restFloat() {
         coinsQuantity = INITIAL_COINS_QUANTITY;
+        System.out.println("\u001B[32mYou have withdraw all the profits successfully!\u001B[0m");
     }
 
     public void addCoin(double coinValue) {
@@ -42,5 +43,13 @@ public class Bank {
             total += (Math.round((coinsQuantity[i] * acceptedCoins[i]) * 100D)) / 100D;
         }
         System.out.println("Total sales: " + (total - TOTAL_INITIAL_AMOUNT));
+    }
+
+    public void totalMoney() {
+        double total = 0;
+        for(int i = 0; i <= coinsQuantity.length - 1; i++) {
+            total += (Math.round((coinsQuantity[i] * acceptedCoins[i]) * 100D)) / 100D;
+        }
+        System.out.println("Total money in the machine: £" + (total));
     }
 }
