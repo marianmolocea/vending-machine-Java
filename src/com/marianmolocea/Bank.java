@@ -4,18 +4,16 @@ import java.util.Arrays;
 
 public class Bank {
     Double[] acceptedCoins = {0.05, 0.10, 0.20, 0.50, 1.00};
-    final int[] INITIAL_COINS_QUANTITY = {20, 20, 20, 20, 10};
     final int TOTAL_INITIAL_AMOUNT = 27;
-    int[] coinsQuantity = INITIAL_COINS_QUANTITY;
+    int[] coinsQuantity = {20, 20, 20, 20, 10};
 
     public void restFloat() {
-        coinsQuantity = INITIAL_COINS_QUANTITY;
+        coinsQuantity = new int[]{20, 20, 20, 20, 10};
         System.out.println("\u001B[32mYou have withdraw all the profits successfully!\u001B[0m");
     }
 
     public void addCoin(double coinValue) {
         coinsQuantity[Arrays.asList(acceptedCoins).indexOf(coinValue)] += 1;
-        System.out.println("Coins:" + coinsQuantity[Arrays.asList(acceptedCoins).indexOf(coinValue)]);
     }
 
     public void removeCoins(double coinValue) {
@@ -42,7 +40,7 @@ public class Bank {
         for(int i = 0; i <= coinsQuantity.length - 1; i++) {
             total += (Math.round((coinsQuantity[i] * acceptedCoins[i]) * 100D)) / 100D;
         }
-        System.out.println("Total sales: " + (total - TOTAL_INITIAL_AMOUNT));
+        System.out.println("\u001B[36mTotal sales: £" + (total - TOTAL_INITIAL_AMOUNT) + "\u001B[0m");
     }
 
     public void totalMoney() {
@@ -50,6 +48,6 @@ public class Bank {
         for(int i = 0; i <= coinsQuantity.length - 1; i++) {
             total += (Math.round((coinsQuantity[i] * acceptedCoins[i]) * 100D)) / 100D;
         }
-        System.out.println("Total money in the machine: £" + (total));
+        System.out.println("\u001B[36mTotal money in the machine: £" + (total) + "\u001B[0m");
     }
 }

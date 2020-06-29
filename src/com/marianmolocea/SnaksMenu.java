@@ -10,6 +10,7 @@ public class SnaksMenu {
     Snack water = new Snack("Water\t\t", 0.85D);
 
     Snack[] snacks = {crisps, mars, cola, eugenia, water};
+
     Scanner scanner = new Scanner(System.in);
     boolean activeSession = true;
 
@@ -30,16 +31,22 @@ public class SnaksMenu {
         int selectedItem = scanner.nextInt();
 
         if(selectedItem > 0 && selectedItem <= snacks.length) {
-            // Get the quantity from user
-            System.out.print("Please select the quantity: ");
-            byte itemQuantity = scanner.nextByte();
-            byte quantity = selectQuantity(itemQuantity, (byte) snacks[selectedItem - 1].quantity);
 
-            //Handle the payment and dispense the items
-            Payment.makePayment(snacks[selectedItem - 1], quantity, bank);
+            if (snacks[selectedItem - 1].quantity < 1) {
+                System.out.println("Product OUT OF STOCK!!");
+            }
+            else {
+                // Get the quantity from user
+                System.out.print("Please select the quantity: ");
+                byte itemQuantity = scanner.nextByte();
+                byte quantity = selectQuantity(itemQuantity, snacks[selectedItem - 1].quantity);
 
-            //Decrease the stock.
-            snacks[selectedItem - 1].decreaseQuantity(quantity);
+                //Handle the payment and dispense the items
+                Payment.makePayment(snacks[selectedItem - 1], quantity, bank);
+
+                //Decrease the stock.
+                snacks[selectedItem - 1].decreaseQuantity(quantity);
+            }
         }
         else if (selectedItem == 10976) {
             PowerMenu.displayMenu(bank);

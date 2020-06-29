@@ -3,21 +3,15 @@ package com.marianmolocea;
 public class Snack {
     String name;
     double price;
-    int quantity;
-    final int INITIAL_QUANTITY = 10;
+    byte quantity = 10;
 
-    public Snack(String name, double price) {
-        this.name = name;
-        this.price = price;
-        this.quantity = INITIAL_QUANTITY;
+    public Snack(String _name, double _price) {
+        name = _name;
+        price = _price;
     }
 
     public void decreaseQuantity(byte soldQuantity) {
-        this.quantity -= soldQuantity;
-    }
-
-    public void resetQuantity() {
-        this.quantity = INITIAL_QUANTITY;
+        quantity -= soldQuantity;
     }
 
     public String outOfStock() {
