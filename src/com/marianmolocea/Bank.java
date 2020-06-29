@@ -1,6 +1,7 @@
 package com.marianmolocea;
 
 import java.util.Arrays;
+import java.util.stream.DoubleStream;
 
 public class Float {
     Double[] acceptedCoins = {0.05D, 0.10D, 0.20D, 0.50D, 1.00D};
@@ -12,6 +13,6 @@ public class Float {
     }
 
     public void addCoins(double coinValue) {
-
+        System.out.println(Arrays.asList(acceptedCoins).indexOf(coinValue));
     }
 }
