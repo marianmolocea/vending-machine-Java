@@ -32,14 +32,17 @@ public class Payment {
             else System.out.println("\u001B[31mCoin not Accepted\u001B[0m");
         }
 
-        if(amountPayed > amountToBePayed && (amountToBePayed - amountPayed) < 0.05D)
+        if(amountPayed > amountToBePayed && (amountToBePayed - amountPayed) < 0.05D) {
+            double changeToDispense = (Math.round((amountPayed - amountToBePayed) * 100D) / 100D);
             System.out.println(
                 "Please collect your \u001B[33m" +
                 item.name.trim() +
                 "\u001B[0m and your change: \u001B[33m£" +
-                (Math.round((amountPayed - amountToBePayed) * 100D) / 100D) +
+                changeToDispense +
                 "\u001B[0m"
             );
+            change.dispenseChange(changeToDispense);
+        }
         else
             System.out.println("Please collect your \u001B[33m" + item.name.trim() + "\u001B[0m!");
 
