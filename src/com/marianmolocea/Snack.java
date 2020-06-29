@@ -14,6 +14,10 @@ public class Snack {
         quantity -= soldQuantity;
     }
 
+    public void resetStock() {
+        quantity = 10;
+    }
+
     public String outOfStock() {
         return "*** OUT OF STOCK ***";
     }

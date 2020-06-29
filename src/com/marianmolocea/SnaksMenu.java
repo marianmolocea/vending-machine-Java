@@ -49,7 +49,7 @@ public class SnaksMenu {
             }
         }
         else if (selectedItem == 10976) {
-            PowerMenu.displayMenu(bank);
+            PowerMenu.displayMenu(bank, snacks);
         }
         else
             System.out.println("\u001B[31mYour selection is invalid!\u001B[0m");
