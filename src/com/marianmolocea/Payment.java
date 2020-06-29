@@ -5,11 +5,10 @@ import java.util.stream.DoubleStream;
 
 public class Payment {
 
-    public static void makePayment(Snack item, byte quantity) {
+    public static void makePayment(Snack item, byte quantity, Bank bank) {
         double[] acceptedCoins = {0.05D, 0.10D, 0.20D, 0.50D, 1.00D};
         double amountPayed = 0D;
         double amountToBePayed = item.price * (int) quantity;
-        Bank change = new Bank();
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("\u001B[32mAccepted coins: £0.05, £0.10, £0.20, £0.50, £1 \u001B[0m");
@@ -27,7 +26,7 @@ public class Payment {
 
             if(DoubleStream.of(acceptedCoins).anyMatch(el -> el == coin)) {
                 amountPayed += coin;
-                change.addCoin(coin);
+                bank.addCoin(coin);
             }
             else System.out.println("\u001B[31mCoin not Accepted\u001B[0m");
         }
@@ -41,7 +40,7 @@ public class Payment {
                 changeToDispense +
                 "\u001B[0m"
             );
-            change.dispenseChange(changeToDispense);
+            bank.dispenseChange(changeToDispense);
         }
         else
             System.out.println("Please collect your \u001B[33m" + item.name.trim() + "\u001B[0m!");

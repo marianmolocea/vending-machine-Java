@@ -13,7 +13,7 @@ public class SnaksMenu {
     Scanner scanner = new Scanner(System.in);
     boolean activeSession = true;
 
-    public void snacksMenu() {
+    public void snacksMenu(Bank bank) {
         //Display the snacks menu
         System.out.println("NR\tSNACK\t\t\t\tPRICE\t\tQTY");
         for(byte i = 0; i <= snacks.length - 1; i++) {
@@ -36,14 +36,15 @@ public class SnaksMenu {
             byte quantity = selectQuantity(itemQuantity, (byte) snacks[selectedItem - 1].quantity);
 
             //Handle the payment and dispense the items
-            Payment payment = new Payment();
-            payment.makePayment(snacks[selectedItem - 1], quantity);
+            Payment.makePayment(snacks[selectedItem - 1], quantity, bank);
 
             //Decrease the stock.
             snacks[selectedItem - 1].decreaseQuantity(quantity);
         }
-        else if (selectedItem == 10976)
+        else if (selectedItem == 10976) {
             System.out.println("Power Menu");
+            bank.totalSales();
+        }
         else
             System.out.println("\u001B[31mYour selection is invalid!\u001B[0m");
 
