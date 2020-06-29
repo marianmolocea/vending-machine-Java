@@ -43,7 +43,8 @@ public class Main {
             byte quantity = selectQuantity(itemQuantity, (byte) snacks[selectedItem - 1].quantity);
 
             //Handle the payment and dispense the items
-            payment(snacks[selectedItem - 1], quantity);
+            Payment payment = new Payment();
+            payment.makePayment(snacks[selectedItem - 1], quantity);
 
             //Decrease the stock.
             snacks[selectedItem - 1].decreaseQuantity(quantity);
@@ -51,7 +52,14 @@ public class Main {
         else if (selectedItem == 10976)
             System.out.println("Power Menu");
         else
-            System.out.println("Your selection is invalid!");
+            System.out.println("\u001B[31mYour selection is invalid!\u001B[0m");
+
+        System.out.println("Would you like to buy anything else? \n [1] YES | [0] NO");
+        byte session = scanner.nextByte();
+
+        if(session == 0) {
+            activeSession = false;
+        }
     }
 
     public static byte selectQuantity(byte quantity, byte inStock) {
@@ -65,37 +73,5 @@ public class Main {
             return quantity;
     }
 
-    public static void payment(Snack item, byte quantity) {
-        double[] acceptedCoins = {0.05D, 0.10D, 0.20D, 0.50D, 1.00D};
-        double amountPayed = 0D;
-        double amountToBePayed = item.price * (int) quantity;
 
-        while(amountPayed < amountToBePayed) {
-            System.out.println("Total left to pay: " + (Math.round((amountToBePayed - amountPayed) * 100D) / 100D));
-
-            // Get the coin input.
-            System.out.print("Enter coin: ");
-            double coin = scanner.nextDouble();
-
-            if(DoubleStream.of(acceptedCoins).anyMatch(el -> el == coin)) {
-                amountPayed += coin;
-            }
-            else System.out.println("Coin not Accepted");
-        }
-
-        if(amountPayed > amountToBePayed)
-            System.out.println(
-                "Please collect your " + item.name.trim() + " and your change: £"
-                + (Math.round((amountPayed - amountToBePayed) * 100D) / 100D)
-            );
-        else
-            System.out.println("Please collect your " + item.name.trim() + "!");
-
-        System.out.println("Would you like to buy anything else? \n [1] YES | [0] NO");
-        byte session = scanner.nextByte();
-
-        if(session == 0) {
-            activeSession = false;
-        }
-    }
 }
