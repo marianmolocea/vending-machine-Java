@@ -7,7 +7,7 @@ public class Bank {
     final int TOTAL_INITIAL_AMOUNT = 27;
     int[] coinsQuantity = {20, 20, 20, 20, 10};
 
-    public void restFloat() {
+    public void resetFloat() {
         coinsQuantity = new int[]{20, 20, 20, 20, 10};
         System.out.println("\u001B[32mYou have withdraw all the profits successfully!\u001B[0m");
     }
@@ -20,8 +20,7 @@ public class Bank {
         coinsQuantity[Arrays.asList(acceptedCoins).indexOf(coinValue)] -= 1;
     }
 
-    public void dispenseChange(double change) {
-        double changeToDispense = change;
+    public void dispenseChange(double changeToDispense) {
         System.out.println("\033[0;36m***** CHANGE DISPENSED *****");
         for(int i = acceptedCoins.length - 1; i >= 0; i--) {
             if(changeToDispense > 0) {

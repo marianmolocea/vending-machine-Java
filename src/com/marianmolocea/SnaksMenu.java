@@ -31,7 +31,6 @@ public class SnaksMenu {
         int selectedItem = scanner.nextInt();
 
         if(selectedItem > 0 && selectedItem <= snacks.length) {
-
             if (snacks[selectedItem - 1].quantity < 1) {
                 System.out.println("Product OUT OF STOCK!!");
             }
@@ -48,8 +47,14 @@ public class SnaksMenu {
                 snacks[selectedItem - 1].decreaseQuantity(quantity);
             }
         }
-        else if (selectedItem == 10976) {
-            PowerMenu.displayMenu(bank, snacks);
+        else if (selectedItem == 10976) { //Enter the Power Menu
+            System.out.print("Please insert the password: ");
+            int password = scanner.nextInt();
+            if(password == 1234) {
+                PowerMenu.displayMenu(bank, snacks);
+            } else {
+                System.out.println("Invalid password");
+            }
         }
         else
             System.out.println("\u001B[31mYour selection is invalid!\u001B[0m");

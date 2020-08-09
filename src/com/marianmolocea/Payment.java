@@ -10,8 +10,11 @@ public class Payment {
         double amountPayed = 0D;
         double amountToBePayed = item.price * (int) quantity;
         Scanner scanner = new Scanner(System.in);
+        boolean activeSession = true;
 
         System.out.println("\u001B[32mAccepted coins: £0.05, £0.10, £0.20, £0.50, £1 \u001B[0m");
+
+        //Handle the coin input
         while(amountPayed < amountToBePayed) {
             System.out.println(
                 "Total left to pay: " +
@@ -24,14 +27,19 @@ public class Payment {
             System.out.print("Enter coin: ");
             double coin = scanner.nextDouble();
 
+            //Check if the input coin is an accepted coin
             if(DoubleStream.of(acceptedCoins).anyMatch(el -> el == coin)) {
                 amountPayed += coin;
                 bank.addCoin(coin);
+            }else if (coin == 0) {
+                activeSession = false;
+                break;
             }
             else System.out.println("\u001B[31mCoin not Accepted\u001B[0m");
         }
 
-        if(amountPayed > amountToBePayed && (amountToBePayed - amountPayed) < 0.05D) {
+        // Handle the change dispense
+        if(amountPayed > amountToBePayed && (amountToBePayed - amountPayed) < 0.05D && activeSession) {
             double changeToDispense = (Math.round((amountPayed - amountToBePayed) * 100D) / 100D);
             System.out.println(
                 "Please collect your \u001B[33m" +
@@ -42,7 +50,8 @@ public class Payment {
             );
             bank.dispenseChange(changeToDispense);
         }
-        else
+
+        else if (activeSession)
             System.out.println("Please collect your \u001B[33m" + item.name.trim() + "\u001B[0m!");
 
     }

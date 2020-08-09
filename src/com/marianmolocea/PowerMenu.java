@@ -34,7 +34,7 @@ public class PowerMenu {
                 for(int i = 0; i<= snacks.length - 1; i++) {
                     snacks[i].resetStock();
                 }
-                bank.restFloat();
+                bank.resetFloat();
                 break;
             case 4:
                 adminSession = false;

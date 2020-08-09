@@ -7,6 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+        // Loop over the snacks menu and execute the methods chained within.
         while(menu.activeSession) {
             menu.snacksMenu(bank);
         }
